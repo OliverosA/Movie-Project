@@ -75,6 +75,30 @@ export default class Main {
     );
   }
 
+  async addHorrorMovie() {
+    const info: HorrorMovieInput = (
+      await Input.getForm('Fill the following: ', this.horrorMovieForm)
+    ).data;
+    const ghosts: boolean = (
+      await Input.getConfirm('Are there ghosts in this movie?')
+    ).data;
+    const visions: boolean = (
+      await Input.getConfirm('Are there visions in this movie?')
+    ).data;
+    this.movies.push(
+      new HorrorMovie(
+        info.name,
+        info.director,
+        info.language,
+        Number(info.running_time),
+        Number(info.year),
+        Number(info.jump_scares_count),
+        ghosts,
+        visions
+      )
+    );
+  }
+
 
   async start() {
     /* YOUR CODE HERE */
