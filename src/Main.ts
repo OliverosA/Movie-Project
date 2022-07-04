@@ -99,6 +99,17 @@ export default class Main {
     );
   }
 
+  showActionMovies() {
+    this.movies.forEach((movie: Movie) => {
+      if (movie instanceof ActionMovie) movie.printActionMovie();
+    });
+  }
+
+  showHorrorMovies() {
+    this.movies.forEach((movie: Movie) => {
+      if (movie instanceof HorrorMovie) movie.printHorrorMovie();
+    });
+  }
 
   async start() {
     /* YOUR CODE HERE */
