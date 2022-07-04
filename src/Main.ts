@@ -132,6 +132,27 @@ export default class Main {
     console.log('😨😱💀 Jump Scare has been added!');
   }
 
+  async incrementExplosions() {
+    const actionMoviesOptions: Choice[] = this.movies
+      .filter((movie: Movie) => movie instanceof ActionMovie)
+      .map((movie: Movie) => ({
+        name: movie.id,
+        message: movie.name,
+      }));
+    if (actionMoviesOptions.length === 0) {
+      return console.log('No Action Movies Available');
+    }
+    const idOfMovieToIncrementExplosions = (
+      await Input.getSelectById('Select The Action Movie', actionMoviesOptions)
+    ).data;
+    this.movies.forEach((movie: Movie) => {
+      if (movie.id === idOfMovieToIncrementExplosions) {
+        if (movie instanceof ActionMovie) return movie.incrementExplosions();
+      }
+    });
+    console.log('💥💣🧨 Explosion has been added!');
+  }
+
   async start() {
     /* YOUR CODE HERE */
   }
