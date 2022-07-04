@@ -111,6 +111,27 @@ export default class Main {
     });
   }
 
+  async incrementJumpScares() {
+    const horrorMoviesOptions: Choice[] = this.movies
+      .filter((movie: Movie) => movie instanceof HorrorMovie)
+      .map((movie: Movie) => ({
+        name: movie.id,
+        message: movie.name,
+      }));
+    if (horrorMoviesOptions.length === 0) {
+      return console.log('No Horror Movies Available');
+    }
+    const idOfMovieToIncrementJumpScares = (
+      await Input.getSelectById('Select The Horror Movie', horrorMoviesOptions)
+    ).data;
+    this.movies.forEach((movie: Movie) => {
+      if (movie.id === idOfMovieToIncrementJumpScares) {
+        if (movie instanceof HorrorMovie) return movie.incrementJumpscares();
+      }
+    });
+    console.log('😨😱💀 Jump Scare has been added!');
+  }
+
   async start() {
     /* YOUR CODE HERE */
   }
