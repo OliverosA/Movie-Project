@@ -154,6 +154,44 @@ export default class Main {
   }
 
   async start() {
-    /* YOUR CODE HERE */
+    let running = true;
+    let option: number;
+    while (running) {
+      option = (await Input.getSelect('Blockbuster', this.menuOptions)).data;
+      console.clear();
+      switch (option) {
+        case 1: {
+          await this.addActionMovie();
+          break;
+        }
+        case 2: {
+          await this.addHorrorMovie();
+          break;
+        }
+        case 3: {
+          this.showActionMovies();
+          break;
+        }
+        case 4: {
+          this.showHorrorMovies();
+          break;
+        }
+        case 5: {
+          await this.incrementExplosions();
+          break;
+        }
+        case 6: {
+          await this.incrementJumpScares();
+          break;
+        }
+        case 7: {
+          running = false;
+          break;
+        }
+        default: {
+          console.log('No valid option selected');
+        }
+      }
+    }
   }
 }
