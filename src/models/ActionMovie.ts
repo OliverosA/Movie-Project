@@ -21,7 +21,7 @@ export default class ActionMovie extends Movie{
         this.martial_arts = martial_arts;
     }
 
-    incrementalExplosions() {
+    incrementExplosions() {
         this.explosions_count += 1;
     }
 
