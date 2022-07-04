@@ -51,6 +51,31 @@ export default class Main {
     { name: 'jump_scares_count', message: 'Jump Scares Count' },
   ];
 
+  async addActionMovie() {
+    const info: ActionMovieInput = (
+      await Input.getForm('Fill the following: ', this.actionMovieForm)
+    ).data;
+    const guns: boolean = (
+      await Input.getConfirm('Are there guns in this movie?')
+    ).data;
+    const martial_arts: boolean = (
+      await Input.getConfirm('Are there martial arts in this movie?')
+    ).data;
+    this.movies.push(
+      new ActionMovie(
+        info.name,
+        info.director,
+        info.language,
+        Number(info.running_time),
+        Number(info.year),
+        Number(info.explosions_count),
+        guns,
+        martial_arts
+      )
+    );
+  }
+
+
   async start() {
     /* YOUR CODE HERE */
   }
